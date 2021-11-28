@@ -1,0 +1,18 @@
+.status {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.online {
+  background-color: rgb(0, 128, 0);
+}
+.offline {
+  background-color: rgb(255, 0, 0);
+}
+.avatar {
+  margin-right: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(0, 0, 0);
+}
