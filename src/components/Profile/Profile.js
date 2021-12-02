@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import s from './Profile.module.css';
 
-export default function Profile({ avatar, username, tag, location, stats }) {
+export default function Profile({
+  avatar,
+  username,
+  tag,
+  location,
+  stats: { followers, views, likes },
+}) {
   return (
     <div className={s.profile}>
       <div className={s.description}>
@@ -14,15 +20,15 @@ export default function Profile({ avatar, username, tag, location, stats }) {
       <ul className={s.stats}>
         <li>
           <span className="label">Followers</span>
-          <span className={s.quantity}>{stats.followers}</span>
+          <span className={s.quantity}>{followers}</span>
         </li>
         <li>
           <span className="label">Views</span>
-          <span className={s.quantity}>{stats.views}</span>
+          <span className={s.quantity}>{views}</span>
         </li>
         <li>
           <span className="label">Likes</span>
-          <span className={s.quantity}>{stats.likes}</span>
+          <span className={s.quantity}>{likes}</span>
         </li>
       </ul>
     </div>

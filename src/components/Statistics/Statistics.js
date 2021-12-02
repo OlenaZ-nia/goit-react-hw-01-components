@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
 import s from './Statistics.module.css';
-
-function getRandom(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
-}
+import { getRandom } from './RandomColor';
 
 export default function Statistics({ title, stats }) {
   return (
@@ -13,19 +8,18 @@ export default function Statistics({ title, stats }) {
       {title && <h2 className={s.title}>{title}</h2>}
 
       <ul className={s.statList}>
-        {stats.map(stat => (
+        {stats.map(({ id, label, percentage }) => (
           <li
             className={s.item}
-            key={stat.id}
+            key={id}
             style={{
-              backgroundColor: `rgb(${getRandom(0, 256)}, ${getRandom(
-                0,
-                256,
-              )}, ${getRandom(0, 256)})`,
+              backgroundColor: `rgb(${getRandom(0, 256)}, 
+              ${getRandom(0, 256)}, 
+              ${getRandom(0, 256)})`,
             }}
           >
-            <span className="label">{stat.label}</span>
-            <span className={s.percentage}>{stat.percentage}%</span>
+            <span className="label">{label}</span>
+            <span className={s.percentage}>{percentage}%</span>
           </li>
         ))}
       </ul>
@@ -34,10 +28,12 @@ export default function Statistics({ title, stats }) {
 }
 
 Statistics.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
     }),
   ),
 };
